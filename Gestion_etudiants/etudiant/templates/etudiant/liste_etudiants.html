@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Étudiants</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px auto;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .actions a {
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: white;
+            margin-right: 5px;
+        }
+        .btn-edit {
+            background-color: #007BFF;
+        }
+        .btn-delete {
+            background-color: #DC3545;
+        }
+        .btn-add {
+            display: block;
+            width: 200px;
+            text-align: center;
+            margin: 20px auto;
+            background-color: #28a745;
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Liste des Étudiants</h1>
+
+    <a href="{% url 'ajouter_etudiant' %}" class="btn-delete">Ajouter un Étudiant</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Métier</th>
+                <th>Âge</th>
+                <th>Inscrit</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for etudiant in etudiants %}
+                <tr>
+                    <td>{{ etudiant.prenom }}</td>
+                    <td>{{ etudiant.nom }}</td>
+                    <td>{{ etudiant.metiers }}</td>
+                    <td>{{ etudiant.age }}</td>
+                    <td>{{ etudiant.est_inscrit|yesno:"" }}</td>
+                    <td class="actions">
+                        <a href="{% url 'modifier_etudiant' etudiant.id %}" class="btn-delete"> Modifier</a>
+                        <a href="{% url 'supprimer_etudiant' etudiant.id %}" class="btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet étudiant ?')">🗑️ Supprimer</a>
+                    
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

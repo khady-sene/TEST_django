@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>liste des etudiants</title>
+</head>
+
+<body>
+{% for etudiant in etudiants %}
+
+<h1>Bienvenue {{ etudiant.prenom }} {{ etudiant.nom }}</h1>
+<div>
+
+<p>Metier : {{ etudiant.metiers }}</p>
+<p>Age : {{ etudiant.age }} ans</p>
+{% if etudiant.est_inscrit %}
+<p>Inscrit : OUI</p>
+{% else %}
+<p>Inscrit : NON</p>
+{% endif %}
+<small>Publié le {{ etudiant.created_at }}</small>
+</div>
+<hr>
+{% endfor %}
+</body>
+</html>

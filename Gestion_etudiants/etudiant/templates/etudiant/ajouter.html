@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un étudiant</title>
+        {% load static %}
+
+</head>
+<body>
+    <h1>Ajouter un étudiant</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" required>
+        <br>
+        <button type="submit">Ajouter</button>
+    </form>
+    <a href="{% url 'liste_etudiants' %}">Retour à la liste des étudiants</a>
+</body>
+</html>
